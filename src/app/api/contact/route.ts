@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     const inquiryRef = `MIRA-${Date.now().toString().slice(-6)}`;
 
     // In a production app, send email via SendGrid, Resend, AWS SES or Nodemailer to owner:
-    // e.g. await sendEmail({ to: 'owner@miragems.com', from: email, subject, text: message })
+    // e.g. await sendEmail({ to: 'miragems07@gmail.com', from: email, subject, text: message })
     console.log(`[ATELIER EMAIL DISPATCH TO OWNER] Ref: ${inquiryRef}`);
     console.log(`From: ${fullName} <${email}> (${phone})`);
     console.log(`Subject: ${subject} | Category: ${interestCategory}`);

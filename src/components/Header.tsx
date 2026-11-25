@@ -2,17 +2,16 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
-  Diamond, 
   Menu, 
   X, 
   Search, 
   Heart, 
   PhoneCall, 
   Globe, 
-  ChevronDown,
-  Sparkles
+  ChevronDown
 } from 'lucide-react';
 import { useCurrency, CurrencyCode } from '../context/CurrencyContext';
 import { useWishlist } from '../context/WishlistContext';
@@ -94,57 +93,7 @@ export default function Header() {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      {/* Top VIP Announcement Ribbon - Slim compact height */}
-      <div className="bg-[#faf8f5] border-b border-stone-200 text-stone-600 transition-colors py-1 px-4 text-[11px]">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="hidden sm:flex items-center gap-1.5 tracking-wider uppercase text-[10px] text-amber-900/80 font-medium">
-            <Sparkles className="w-3 h-3 text-amber-600 animate-pulse" />
-            <span>Complimentary Insured Delivery & GIA / Gübelin Certification</span>
-          </div>
-          <div className="flex items-center gap-4 sm:gap-6 ml-auto text-[11px]">
-            {/* Currency Selector */}
-            <div className="relative">
-              <button 
-                onClick={() => setCurrencyDropdownOpen(!currencyDropdownOpen)}
-                className="flex items-center gap-1 text-stone-700 hover:text-amber-700 transition-colors py-0.5 tracking-wider font-medium text-[11px]"
-                title="Select Currency"
-              >
-                <Globe className="w-3 h-3 text-amber-600" />
-                <span>{currency}</span>
-                <ChevronDown className="w-2.5 h-2.5 opacity-70" />
-              </button>
-
-              {currencyDropdownOpen && (
-                <div className="absolute right-0 mt-1 w-28 bg-white border border-stone-200 rounded-lg shadow-xl py-1 z-50 animate-fadeIn">
-                  {currencies.map((code) => (
-                    <button
-                      key={code}
-                      onClick={() => {
-                        setCurrency(code);
-                        setCurrencyDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-1 text-xs hover:bg-stone-50 transition-colors flex justify-between ${
-                        currency === code ? 'text-amber-700 font-semibold bg-amber-50/60' : 'text-stone-700'
-                      }`}
-                    >
-                      <span>{code}</span>
-                      {currency === code && <span className="text-amber-700">✓</span>}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <Link 
-              href="/contact" 
-              className="hidden md:flex items-center gap-1 text-stone-600 hover:text-amber-700 transition-colors font-medium text-[11px]"
-            >
-              <PhoneCall className="w-3 h-3 text-amber-600" />
-              <span>Private Atelier Concierge</span>
-            </Link>
-          </div>
-        </div>
-      </div>
+    
 
       {/* Main Luxury Navigation Bar - Compact Sleek Height */}
       <header
@@ -168,21 +117,17 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Brand Logo & Tagline - Refined Compact Scale */}
-            <div className="flex-1 lg:flex-initial text-center lg:text-left">
-              <Link href="/" className="inline-flex items-center gap-2 group">
-                <div className="relative">
-                  <Diamond className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600 transition-transform duration-500 group-hover:rotate-45" />
-                  <span className="absolute -inset-1 bg-amber-200/50 blur-sm rounded-full -z-10 group-hover:bg-amber-300/60 transition-all" />
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="font-serif text-xl sm:text-2xl tracking-[0.22em] text-stone-900 font-medium uppercase transition-colors group-hover:text-amber-800 leading-tight">
-                    MIRA
-                  </span>
-                  <span className="text-[7.5px] sm:text-[8px] tracking-[0.3em] uppercase text-amber-800/80 font-sans font-semibold -mt-0.5">
-                    Gem Store & High Jewellery
-                  </span>
-                </div>
+            {/* Brand Logo */}
+            <div className="flex-1 lg:flex-initial text-center lg:text-left flex items-center justify-center lg:justify-start">
+              <Link href="/" className="inline-flex items-center">
+                <Image
+                  src="/images/logo.png"
+                  alt="MIRA Gems"
+                  width={150}
+                  height={40}
+                  priority
+                  className="h-8 sm:h-9 md:h-10 w-auto object-contain"
+                />
               </Link>
             </div>
 

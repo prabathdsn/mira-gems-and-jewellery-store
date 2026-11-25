@@ -272,13 +272,14 @@ export default function ProductDetailClient({ item, relatedItems }: ProductDetai
               </Link>
 
               <div className="grid grid-cols-2 gap-3">
-                <Link
-                  href="/contact"
+                <a
+                  href="tel:+94703082427"
                   className="py-3 px-4 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 text-xs uppercase tracking-wider font-semibold text-center flex items-center justify-center gap-1.5 transition-colors"
+                  title="Call Mira Gems and Jewelry Concierge"
                 >
                   <PhoneCall className="w-3.5 h-3.5 text-amber-600" />
                   <span>Call Concierge</span>
-                </Link>
+                </a>
 
                 <button
                   onClick={() => toggleWishlist(item.id)}

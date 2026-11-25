@@ -14,8 +14,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'MIRA Gem Store | High Jewellery & Rare Untreated Gemstones',
-  description: 'Curators of unheated Ceylon blue sapphires, Colombian emeralds, Burmese rubies, and handcrafted haute joaillerie. Certified by GIA and Gübelin.',
+  title: 'Mira Gems and Jewelry | High Jewellery & Rare Untreated Gemstones',
+  description: 'Mira Gems and Jewelry - Curators of unheated Ceylon blue sapphires, Colombian emeralds, Burmese rubies, and handcrafted fine jewellery. Based in Ganemulla, Sri Lanka.',
   keywords: [
     'gemstones',
     'jewellery',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     'luxury rings',
     'unheated gems',
     'Ceylon sapphire',
-    'Mira Gem Store'
+    'Mira Gems and Jewelry'
   ],
-  authors: [{ name: 'MIRA Gem Store' }],
+  authors: [{ name: 'Mira Gems and Jewelry' }],
 };
 
 export default function RootLayout({

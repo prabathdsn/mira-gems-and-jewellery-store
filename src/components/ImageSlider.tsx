@@ -46,8 +46,8 @@ export default function ImageSlider() {
         onMouseEnter={() => setIsPlaying(false)}
         onMouseLeave={() => setIsPlaying(true)}
       >
-        {/* Main Slide Presentation */}
-        <div className="relative w-full min-h-[560px] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[720px] flex items-end">
+        {/* Main Slide Presentation - Height Reduced by 20% */}
+        <div className="relative w-full min-h-[448px] sm:min-h-[496px] md:min-h-[544px] lg:min-h-[576px] flex items-end">
           
           {/* Background Image of current slide with fade effect */}
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -65,27 +65,27 @@ export default function ImageSlider() {
           </div>
 
           {/* Slide Information Card - Centered within max-w-7xl layout grid */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-10 sm:pb-14 md:pb-16 text-white">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-7 sm:pb-9 md:pb-11 text-white">
             <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-500/90 text-stone-950 text-[11px] uppercase tracking-[0.2em] font-bold mb-4 shadow-sm backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-500/90 text-stone-950 text-[11px] uppercase tracking-[0.2em] font-bold mb-3 shadow-sm backdrop-blur-sm">
                 <Sparkles className="w-3 h-3 text-stone-950" />
                 <span>{currentItem.badge}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-stone-200 text-xs tracking-wider mb-2 font-medium">
+              <div className="flex items-center gap-2 text-stone-200 text-xs tracking-wider mb-1.5 font-medium">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />
                 <span>Origin: {currentItem.origin}</span>
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal mb-3 leading-tight drop-shadow-sm">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-normal mb-2.5 leading-tight drop-shadow-sm">
                 {currentItem.title}
               </h1>
 
-              <p className="text-stone-200 text-sm sm:text-base font-light mb-5 leading-relaxed max-w-lg">
+              <p className="text-stone-200 text-xs sm:text-sm font-light mb-4 leading-relaxed max-w-lg line-clamp-2 sm:line-clamp-none">
                 {currentItem.subtitle}
               </p>
 
-              <div className="flex items-baseline gap-3 mb-7">
+              <div className="flex items-baseline gap-3 mb-5">
                 <span className="text-xs uppercase tracking-widest text-stone-300 font-light">Priced at</span>
                 <span className="text-2xl sm:text-3xl font-serif text-amber-400 font-bold">
                   {currentItem.price}
@@ -96,7 +96,7 @@ export default function ImageSlider() {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href={currentItem.link}
-                  className="px-7 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 hover:text-white font-semibold text-xs uppercase tracking-[0.2em] rounded transition-all duration-300 shadow-lg hover:shadow-amber-500/25 flex items-center gap-2 group/btn"
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 hover:text-white font-semibold text-xs uppercase tracking-[0.2em] rounded transition-all duration-300 shadow-lg hover:shadow-amber-500/25 flex items-center gap-2 group/btn"
                 >
                   <span>Explore Masterpiece</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
@@ -104,7 +104,7 @@ export default function ImageSlider() {
 
                 <Link
                   href="/jewellery"
-                  className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/30 hover:border-white/50 text-xs uppercase tracking-[0.2em] rounded backdrop-blur-md transition-all duration-300"
+                  className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 hover:border-white/50 text-xs uppercase tracking-[0.2em] rounded backdrop-blur-md transition-all duration-300"
                 >
                   View All Pieces
                 </Link>
@@ -116,17 +116,17 @@ export default function ImageSlider() {
           <button
             onClick={prevSlide}
             aria-label="Previous slide"
-            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-amber-500 text-white border border-white/25 hover:border-amber-500 backdrop-blur-md shadow-xl flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100"
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-amber-500 text-white border border-white/25 hover:border-amber-500 backdrop-blur-md shadow-xl flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={nextSlide}
             aria-label="Next slide"
-            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-amber-500 text-white border border-white/25 hover:border-amber-500 backdrop-blur-md shadow-xl flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100"
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-amber-500 text-white border border-white/25 hover:border-amber-500 backdrop-blur-md shadow-xl flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
         </div>

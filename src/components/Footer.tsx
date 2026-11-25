@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Diamond, 
   Mail, 
@@ -10,21 +11,10 @@ import {
   ShieldCheck, 
   Award, 
   Truck, 
-  CheckCircle2, 
   ArrowRight
 } from 'lucide-react';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
 
   return (
     <footer className="bg-[#faf8f5] border-t border-stone-200 text-stone-600 pt-16 pb-12 transition-colors">
@@ -74,19 +64,24 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Links & Information Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-stone-200">
           
           {/* Brand Story Column */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <Diamond className="w-6 h-6 text-amber-600" />
-              <span className="font-serif text-2xl tracking-[0.2em] text-stone-900 font-medium">MIRA</span>
-            </div>
-            <p className="text-xs tracking-[0.3em] uppercase text-amber-800 font-semibold">
-              Gem Store & Haute Joaillerie
+          <div className="space-y-4">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/logo.png"
+                alt="Mira Gems and Jewelry"
+                width={150}
+                height={40}
+                className="h-9 w-auto object-contain"
+              />
+            </Link>
+            <p className="text-xs tracking-[0.25em] uppercase text-amber-800 font-semibold">
+              Mira Gems and Jewelry
             </p>
-            <p className="text-sm text-stone-600 leading-relaxed max-w-sm">
-              Curators of earth’s rarest untreated corundum and master craftsmen of bespoke haute joaillerie. Sourcing royal sapphires, rubies, and Colombian emeralds with uncompromised integrity since 1984.
+            <p className="text-sm text-stone-600 leading-relaxed">
+              Curators of earth’s rarest untreated corundum and master craftsmen of bespoke high jewellery and fine gemstones.
             </p>
             <div className="flex items-center gap-3 pt-2 text-stone-500">
               {/* Instagram SVG */}
@@ -134,46 +129,44 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter Column */}
+          {/* Contact & Location Column */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-stone-900">
-              VIP Gazette
+              Contact & Atelier
             </h4>
-            <p className="text-xs text-stone-500 leading-relaxed">
-              Receive private invitations to confidential mine-site acquisitions and private viewing galas.
-            </p>
-            {subscribed ? (
-              <div className="flex items-center gap-2 p-2.5 rounded bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium">
-                <CheckCircle2 className="w-4 h-4 text-amber-600" />
-                <span>You have been entered into the private register.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="space-y-2">
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your private email..."
-                    required
-                    className="w-full bg-white border border-stone-300 rounded px-3 py-2 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 shadow-sm"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-2 bg-stone-900 hover:bg-amber-600 text-white text-xs font-semibold uppercase tracking-[0.2em] rounded transition-colors shadow-sm"
-                >
-                  Request Invitations
-                </button>
-              </form>
-            )}
+            <div className="space-y-2.5 text-xs text-stone-600">
+              <p className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <span>149/29/C Kadawatha Rd Ganemulla, Sri Lanka</span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-amber-600 shrink-0" />
+                <a href="mailto:miragems07@gmail.com" className="hover:text-amber-700 transition-colors font-medium">
+                  miragems07@gmail.com
+                </a>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-amber-600 shrink-0" />
+                <a href="tel:+94703082427" className="hover:text-amber-700 transition-colors font-semibold text-stone-800">
+                  (94) 703 082 427
+                </a>
+              </p>
+            </div>
+            <div className="pt-2">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-amber-800 hover:text-amber-900 font-semibold"
+              >
+                <span>Direct Inquiry</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
-
         </div>
 
         {/* Bottom Copyright & Legal */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <p>© {new Date().getFullYear()} MIRA Gem Store. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Mira Gems and Jewelry. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/contact" className="hover:text-amber-700 transition-colors">Privacy Notice</Link>
             <Link href="/contact" className="hover:text-amber-700 transition-colors">Terms of Vault Consignment</Link>

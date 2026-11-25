@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProductById } from '../../../../lib/products';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -16,10 +19,17 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      data: product,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        data: product,
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store, max-age=0',
+        },
+      }
+    );
   } catch (error) {
     console.error('Failed to fetch product:', error);
     return NextResponse.json(

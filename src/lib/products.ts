@@ -24,8 +24,26 @@ export interface DbProductRow {
 }
 
 export function mapRowToJewelleryItem(row: DbProductRow): JewelleryItem {
-  const specs = typeof row.specs === 'string' ? JSON.parse(row.specs) : row.specs;
-  const images = typeof row.images === 'string' ? JSON.parse(row.images) : (row.images as string[]) || [];
+  let specs = row.specs;
+  if (typeof specs === 'string') {
+    try {
+      specs = JSON.parse(specs);
+    } catch {
+      specs = {};
+    }
+  }
+
+  let images = row.images;
+  if (typeof images === 'string') {
+    try {
+      images = JSON.parse(images);
+    } catch {
+      images = [];
+    }
+  }
+  if (!Array.isArray(images)) {
+    images = images ? [images as string] : [];
+  }
 
   return {
     id: row.id,
@@ -41,8 +59,8 @@ export function mapRowToJewelleryItem(row: DbProductRow): JewelleryItem {
     isOneOfAKind: Boolean(row.is_one_of_a_kind),
     description: row.description,
     fullStory: row.full_story,
-    specs,
-    images,
+    specs: specs as JewelleryItem['specs'],
+    images: images as string[],
     inStock: row.in_stock !== false,
     rating: row.rating ? Number(row.rating) : 5.0,
     reviewsCount: row.reviews_count ? Number(row.reviews_count) : 0,
@@ -67,8 +85,8 @@ export async function getAllProducts(): Promise<JewelleryItem[]> {
       ORDER BY is_featured DESC, created_at DESC
     `) as DbProductRow[];
 
-    if (!rows || rows.length === 0) {
-      return JEWELLERY_PRODUCTS;
+    if (!rows) {
+      return [];
     }
 
     return rows.map(mapRowToJewelleryItem);
@@ -100,7 +118,7 @@ export async function getProductById(id: string): Promise<JewelleryItem | null> 
       return mapRowToJewelleryItem(rows[0]);
     }
 
-    return JEWELLERY_PRODUCTS.find((p) => p.id === id) || null;
+    return null;
   } catch (error) {
     console.warn(`PostgreSQL query error for product ${id}:`, error);
     return JEWELLERY_PRODUCTS.find((p) => p.id === id) || null;
@@ -122,6 +140,7 @@ export async function getFeaturedProducts(limit = 4): Promise<JewelleryItem[]> {
         description, full_story, specs, images, in_stock, rating, reviews_count
       FROM products
       WHERE is_featured = TRUE
+      ORDER BY created_at DESC
       LIMIT ${limit}
     `) as DbProductRow[];
 
@@ -129,7 +148,21 @@ export async function getFeaturedProducts(limit = 4): Promise<JewelleryItem[]> {
       return rows.map(mapRowToJewelleryItem);
     }
 
-    return JEWELLERY_PRODUCTS.slice(0, limit);
+    const latestRows = (await sql`
+      SELECT 
+        id, name, tagline, category, gemstone_type, metal,
+        price, original_price, is_featured, is_new_arrival, is_one_of_a_kind,
+        description, full_story, specs, images, in_stock, rating, reviews_count
+      FROM products
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `) as DbProductRow[];
+
+    if (latestRows && latestRows.length > 0) {
+      return latestRows.map(mapRowToJewelleryItem);
+    }
+
+    return [];
   } catch (error) {
     console.warn('PostgreSQL query error for featured products:', error);
     return JEWELLERY_PRODUCTS.slice(0, limit);

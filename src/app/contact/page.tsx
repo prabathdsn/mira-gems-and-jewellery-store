@@ -124,7 +124,7 @@ function ContactFormContent() {
             {/* Direct Contact Points */}
             <div className="p-8 rounded-2xl bg-white border border-stone-200 shadow-sm space-y-6">
               <h3 className="font-serif text-xl text-stone-900 font-medium mb-2">
-                Atelier Directory
+                Mira Gems and Jewelry Directory
               </h3>
 
               <div className="space-y-4 text-xs sm:text-sm">
@@ -133,9 +133,9 @@ function ContactFormContent() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-stone-500 block text-xs">Direct Owner Inbox</span>
-                    <a href="mailto:owner@miragems.com" className="text-stone-900 font-semibold hover:text-amber-700 transition-colors">
-                      owner@miragems.com
+                    <span className="text-stone-500 block text-xs">Direct Email Inbox</span>
+                    <a href="mailto:miragems07@gmail.com" className="text-stone-900 font-semibold hover:text-amber-700 transition-colors">
+                      miragems07@gmail.com
                     </a>
                   </div>
                 </div>
@@ -146,10 +146,10 @@ function ContactFormContent() {
                   </div>
                   <div>
                     <span className="text-stone-500 block text-xs">Private Atelier Phone / WhatsApp</span>
-                    <a href="tel:+18004926472" className="text-stone-900 font-semibold hover:text-amber-700 transition-colors">
-                      +1 (800) 492-MIRA
+                    <a href="tel:+94703082427" className="text-stone-900 font-semibold hover:text-amber-700 transition-colors">
+                      (94) 703 082 427
                     </a>
-                    <span className="text-stone-500 text-xs block mt-0.5">Direct line to concierge team</span>
+                    <span className="text-stone-500 text-xs block mt-0.5">Direct line to concierge & atelier</span>
                   </div>
                 </div>
 
@@ -158,9 +158,9 @@ function ContactFormContent() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-stone-500 block text-xs">Flagship Salons</span>
-                    <span className="text-stone-900 block font-medium">Colombo Flagship: Galle Face Court 03</span>
-                    <span className="text-stone-500 text-xs block">Geneva Private Salon: Rue du Rhône 42</span>
+                    <span className="text-stone-500 block text-xs">Atelier Location</span>
+                    <span className="text-stone-900 block font-medium">149/29/C Kadawatha Rd Ganemulla</span>
+                    <span className="text-stone-500 text-xs block">Sri Lanka</span>
                   </div>
                 </div>
 
